@@ -2,8 +2,13 @@ def encrypt(original_string, moved_characters)
     split_string = original_string.split("")
     cased_indexes = check_if_cased(split_string)
     downcased_split_string = make_downcased(split_string)
-    altered_string = change_letters(downcased_split_string, moved_characters)
-    altered_string
+    final_string = change_letters(downcased_split_string, moved_characters)
+    capitalize_final_string(final_string, cased_indexes)
+    final_string
+end
+
+def capitalize_final_string(final_string, cased_indexes)
+    cased_indexes.each {|index| final_string[index] = final_string[index].upcase}
 end
 
 def change_letters(downcased_split_string, moved_characters)
@@ -67,7 +72,6 @@ def check_if_cased(split_string)
     isCased
 end
 
-
 def isLetter(character)
     character.index(/[A-Za-z]/) != nil
 end
@@ -97,4 +101,4 @@ end
 $alpha = ("a".."z").to_a
 
 
-p encrypt("hElLoz!!22",1)
+p encrypt("hEfLoZ!!22",25)
