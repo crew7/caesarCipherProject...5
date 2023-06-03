@@ -4,7 +4,7 @@ def encrypt(original_string, moved_characters)
     downcased_split_string = make_downcased(split_string)
     final_string = change_letters(downcased_split_string, moved_characters)
     capitalize_final_string(final_string, cased_indexes)
-    final_string
+    final_string.join("")
 end
 
 def capitalize_final_string(final_string, cased_indexes)
@@ -56,7 +56,6 @@ def make_downcased(split_string)
     end
 end
 
-
 def check_if_cased(split_string)
     isCased = []
 
@@ -76,29 +75,29 @@ def isLetter(character)
     character.index(/[A-Za-z]/) != nil
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $alpha = ("a".."z").to_a
 
 
-p encrypt("hEfLoZ!!22",25)
+print "Enter your string: "
+original_string = gets.chomp 
+
+moved_characters = nil
+
+if original_string.match(/[a-zA-Z]/) != nil
+    until moved_characters.is_a? Integer
+        print "How many alphabet letters will you move? "
+        moved_characters = gets.chomp
+        if moved_characters.match(/^(\d)+$/)
+            moved_characters = moved_characters.to_i
+            break
+        end
+        puts "Ah, you didn't input a number. Try Again."
+    end
+
+else
+    puts "Since no letters, no encryption."
+end
+
+print "Your new encrypted string: "
+print encrypt(original_string,moved_characters.to_i)
+puts ""
